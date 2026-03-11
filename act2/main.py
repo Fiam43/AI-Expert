@@ -13,10 +13,18 @@ if not user_name:
 
 conversation_history = []
 
-print(f"\n{Fore.CYAN}Hello, Agent {user_name}!")
-print("Type a sentence and I will analyze it using TextBlob.")
-print(f"Type {Fore.YELLOW}reset{Fore.CYAN}, {Fore.YELLOW}history{Fore.CYAN}, "
-      f"or {Fore.YELLOW}exit{Fore.CYAN} to quit.{Style.RESET_ALL}\n")
+if user_name == "Mystery Agent":
+    print(f"\n{Fore.CYAN}Hello, Mystery Agent!")
+    print("Type a sentence and I will analyze it using TextBlob.")
+    print(f"Type {Fore.YELLOW}reset{Fore.CYAN}, {Fore.YELLOW}history{Fore.CYAN}, "
+          f"or {Fore.YELLOW}exit{Fore.CYAN} to quit.{Style.RESET_ALL}\n")
+
+else:
+    print(f"\n{Fore.CYAN}Hello, Agent {user_name}!")
+    print("Type a sentence and I will analyze it using TextBlob.")
+    print(f"Type {Fore.YELLOW}reset{Fore.CYAN}, {Fore.YELLOW}history{Fore.CYAN}, "
+          f"or {Fore.YELLOW}exit{Fore.CYAN} to quit.{Style.RESET_ALL}\n")
+
 
 while True:
     user_input = input(f"{Fore.GREEN}>> {Style.RESET_ALL}").strip()
