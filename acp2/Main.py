@@ -4,9 +4,9 @@ from colorama import Fore, init
 init(autoreset=True)
 
 destinations = {
-    "beaches": ["Bali", "Maldives", "Phuket"],
-    "mountains": ["Swiss Alps", "Rocky Mountains", "Himalayas"],
-    "cities": ["Tokyo", "Paris", "New York"]
+    "beaches": ["Bali", "Maldives", "Phuket", "Boracay"],
+    "mountains": ["Swiss Alps", "Rocky Mountains", "Himalayas", "Mount Fuji"],
+    "cities": ["Tokyo", "Paris", "New York", "Dubai"]
 }
 
 jokes = [
@@ -32,7 +32,8 @@ def recommend():
         if answer == "yes":
             print(Fore.GREEN + f"TravelBot: Awesome! Enjoy {suggestion}!")
         elif answer == "no":
-            print(Fore.RED + "TravelBot: Let's try another.")
+            suggestion = random.choice(destinations[preference])
+            print(Fore.GREEN + f"TravelBot: Maybe try {suggestion} instead!")
         else:
             print(Fore.RED + "TravelBot: I'll suggest again.")
     else:
@@ -60,6 +61,20 @@ def show_help():
     print(Fore.GREEN + "- Tell a joke (say 'joke')")
     print(Fore.CYAN + "- Type 'exit' or 'bye' to end.\n")
 
+def weather():
+    print(Fore.CYAN + "TravelBot: Which city?")
+    city = input(Fore.YELLOW + "You: ")
+    print(Fore.GREEN + f"TravelBot: I recommend checking the weather for {city} before traveling!")
+
+facts = [
+    "The shortest flight in the world lasts only 57 seconds.",
+    "France is the most visited country in the world.",
+    "The Maldives has around 1200 islands."
+]
+
+def travel_fact():
+    print(Fore.GREEN + random.choice(facts))
+
 def chat():
     print(Fore.CYAN + "TravelBot: Hi! I'm your travel assistant. How can I help you today?")
     show_help()
@@ -71,12 +86,16 @@ def chat():
         if user_input in ["exit", "bye"]:
             print(Fore.CYAN + "TravelBot: Safe travels! Goodbye!")
             break
-        elif "recommendation" in user_input:
+        elif any(word in user_input for word in ["recommend", "travel", "place", "destination"]):
             recommend()
         elif "packing" in user_input:
             packing_tips()
         elif "joke" in user_input:
             tell_joke()
+        elif "weather" in user_input:
+            weather()
+        elif "fact" in user_input:
+            travel_fact()
         else:
             print(Fore.RED + "TravelBot: Sorry, I didn't understand that. Please try again.")
             show_help()
